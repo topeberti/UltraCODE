@@ -15,6 +15,7 @@ UltraCODE is an open project for sharing ultrasound code and datasets, including
 - Institute IMDEA Materials [IMDEA](https://materials.imdea.org/)
 - Group of Nuclear Physics [GFN-UCM](https://www.ucm.es/gfn/)
 - DASEL SL [DASEL](https://www.daselsistemas.com/en/)
+- Institute for Molecular Imaging Instrumentation [I3M](https://www.i3m.upv.es/view.php/Principal)
 
 ## Collaborators
 - Jorge Camacho [j.camacho@csic.es](mailto:j.camacho@csic.es)
