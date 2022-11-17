@@ -22,6 +22,7 @@ UltraCODE is an open project for sharing ultrasound code and datasets, including
 - Mario Muñoz   [mario.munoz.prieto@csic.es](mailto:mario.munoz.prieto@csic.es)
 - Guillermo Cosarinsky [g.cosarinsky@csic.es@csic.es](mailto:g.cosarinsky@csic.es)
 - Juan Ignacio Caballero [juanignacio.caballero@upm.es](mailto:juanignacio.caballero@upm.es)
+- Luis Elvira Segura [luis.elvira@csic.es](mailto:luis.elvira@csic.es)
 
 
 
