@@ -8,7 +8,7 @@ UltraCODE is an open project for sharing ultrasound code and datasets, including
 - Institute IMDEA Materials [IMDEA](https://materials.imdea.org/)
 - DASEL SL [DASEL](https://www.daselsistemas.com/en/)
 
-## Colaborators
+## Collaborators
 - Jorge Camacho [j.camacho@csic.es](mailto:j.camacho@csic.es)
 - Mario Muñoz   [mario.munoz.prieto@csic.es](mailto:mario.munoz.prieto@csic.es)
 
