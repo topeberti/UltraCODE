@@ -6,6 +6,7 @@ UltraCODE is an open project for sharing ultrasound code and datasets, including
 ## Principal partners
 - Institute for physical and information technologies [ITEFI-CSIC](https://www.itefi.csic.es/en)
 - Institute IMDEA Materials [IMDEA](https://materials.imdea.org/)
+- Group of Nuclear Physics [GFN-UCM](https://www.ucm.es/gfn/)
 - DASEL SL [DASEL](https://www.daselsistemas.com/en/)
 
 ## Collaborators
