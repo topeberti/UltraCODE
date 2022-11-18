@@ -10,7 +10,7 @@ UltraCODE is an open project for sharing ultrasound code and datasets, including
 - **Processing**  : Signal and Image processing code (including AI)
 - **Datasets**    : Ultrasound datasets for medicine and NDT
 
-## Principal partners
+## Partners
 - Institute for physical and information technologies [ITEFI-CSIC](https://www.itefi.csic.es/en)
 - Institute IMDEA Materials [IMDEA](https://materials.imdea.org/)
 - Group of Nuclear Physics [GFN-UCM](https://www.ucm.es/gfn/)
