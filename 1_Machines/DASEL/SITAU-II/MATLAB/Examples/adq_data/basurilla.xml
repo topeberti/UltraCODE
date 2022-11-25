@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<STLIB2>
+	<DateTime pName="Date and Time" pType="tString" pValue="Thu Nov 24 14:57:50 2022" />
+	<Version>
+		<Parameter pName="XML File Version" pType="tString" pValue="2.0" />
+	</Version>
+	<VirtualChannel>
+		<UT_Parameters>
+			<Parameter pName="Acquisition Type" pType="tInt32" pValue="0" />
+			<Parameter pName="(FP) Focal Law type" pType="tInt32" pValue="2" />
+			<Parameter pName="(FP) PWIC Start Angle [deg]" pType="tFloat" pValue="-8.000" />
+			<Parameter pName="(FP) PWIC End Angle [deg]" pType="tFloat" pValue="6.000" />
+			<Parameter pName="(FP) PWIC Step Angle [deg]" pType="tFloat" pValue="2.000" />
+			<Parameter pName="(FP) Acquisitions Number" pType="tInt32" pValue="2" />
+			<Parameter pName="High Voltage Maximum" pType="tInt32" pValue="50" />
+			<Parameter pName="Pulser Enabled" pType="tInt32" pValue="1" />
+			<Parameter pName="Pulses Number" pType="tInt32" pValue="1" />
+			<Parameter pName="Pulse Width [ns]" pType="tFloat" pValue="28.000" />
+			<Parameter pName="Pulse Amplitude [V]" pType="tInt32" pValue="10" />
+			<Parameter pName="PRF Frequency [Hz]" pType="tFloat" pValue="5000.000" />
+			<Parameter pName="Delay Sync Time [ms]" pType="tFloat" pValue="1000.000" />
+			<Parameter pName="Material Velocity [m/s]" pType="tFloat" pValue="6000.000" />
+			<Parameter pName="Acq. Start Distance [mm]" pType="tFloat" pValue="1.000" />
+			<Parameter pName="Acq. End Distance [mm]" pType="tFloat" pValue="4.000" />
+			<Parameter pName="Probe Elements Number" pType="tInt32" pValue="128" />
+			<Parameter pName="Probe Pitch [mm]" pType="tFloat" pValue="0.010" />
+			<Parameter pName="Probe Frequency [MHz]" pType="tFloat" pValue="18.000" />
+		</UT_Parameters>
+		<PA_FocalLaw>
+			<Parameter pName="(PA) Scan Type" pType="tInt32" pValue="0" />
+			<Parameter pName="(PA) Aperture Size" pType="tInt32" pValue="8" />
+			<Parameter pName="(PA) Start Element" pType="tInt32" pValue="1" />
+			<Parameter pName="(PA) Linear End Element" pType="tInt32" pValue="32" />
+			<Parameter pName="(PA) Linear Angle [deg]" pType="tFloat" pValue="0.000" />
+			<Parameter pName="(PA) Angular Step [deg]" pType="tFloat" pValue="1.000" />
+			<Parameter pName="(PA) Angular Start Angle [deg]" pType="tFloat" pValue="-45.000" />
+			<Parameter pName="(PA) Angular End Angle [deg]" pType="tFloat" pValue="45.000" />
+			<Parameter pName="(PA) Emission Focal Point [mm]" pType="tFloat" pValue="15.000" />
+			<Parameter pName="(PA) Reception Focal Point [mm]" pType="tFloat" pValue="50.000" />
+			<Parameter pName="(PA) Global Parallel Lines" pType="tInt32" pValue="1" />
+			<Parameter pName="(PA) Increased Acquired Samples" pType="tInt32" pValue="400" />
+		</PA_FocalLaw>
+		<DSP>
+			<Parameter pName="FIR Enabled" pType="tBoolean" pValue="false" />
+			<Parameter pName="FIR Low Frequency [MHz]" pType="tFloat" pValue="4.000" />
+			<Parameter pName="FIR High Frequency [MHz]" pType="tFloat" pValue="7.000" />
+			<Parameter pName="Processing Type" pType="tInt32" pValue="62" />
+			<Parameter pName="Average Signals Number" pType="tInt32" pValue="8" />
+			<Parameter pName="EMI Signals Number" pType="tInt32" pValue="3" />
+			<Parameter pName="Sampling Frequency [MHz]" pType="tFloat" pValue="62.500" />
+		</DSP>
+		<TGC>
+			<Parameter pName="TGC Enabled" pType="tInt32" pValue="0" />
+			<Parameter pName="TGC Type" pType="tInt32" pValue="2" />
+			<Parameter pName="TGC Attenuation" pType="tFloat" pValue="0.000" />
+		</TGC>
+		<PULSER>
+			<Register pName="PULSER_MAIN_DELAY" pValue="0" />
+			<Register pName="DELAY_MEM_PTR" pValue="0" />
+			<CONTROL>
+				<Register pName="GND0_HIZ1" pValue="0" />
+				<Register pName="PULSER_LOAD" pValue="0" />
+				<Register pName="PULSER_AUTO_LOAD" pValue="0" />
+				<Register pName="PULSER_MODE" pValue="3" />
+				<Register pName="PULSER_STATUS" pValue="0" />
+				<Register pName="STOP" pValue="0" />
+				<Register pName="EXTERNAL_TRIGGER" pValue="0" />
+				<Register pName="NOT_BUSY" pValue="0" />
+				<Register pName="SOFTWARE_TRIGGER" pValue="0" />
+			</CONTROL>
+			<DELAY_MEM>
+				<Register pName="DELAY_MEM_INI" pValue="0" />
+				<Register pName="DELAY_MEM_END" pValue="0" />
+			</DELAY_MEM>
+		</PULSER>
+		<AFE>
+			<Register pName="DELAY_OFFSET" pValue="19" />
+			<BUSSAR>
+				<Register pName="EXTERNAL_TRIGGER" pValue="0" />
+				<Register pName="DEC_RATIO" pValue="0" />
+				<Register pName="NUM_SAMPLES" pValue="62" />
+				<Register pName="WATER_DELAY" pValue="40" />
+				<Register pName="LOG2_AVERAGE" pValue="0" />
+			</BUSSAR>
+			<SPI>
+				<REG21>
+					<Register pName="DIGITAL_HPF_FILTER_ENABLE_1_4" pValue="1" />
+					<Register pName="DIGITAL_HPF_FILTER_K_CH_1_4" pValue="2" />
+				</REG21>
+				<REG33>
+					<Register pName="DIGITAL_HPF_FILTER_ENABLE_5_8" pValue="1" />
+					<Register pName="DIGITAL_HPF_FILTER_K_CH_5_8" pValue="2" />
+				</REG33>
+				<REG51>
+					<Register pName="LPF_PROGRAMMABILITY" pValue="2" />
+					<Register pName="PGA_INTEGRATOR_DISABLE" pValue="0" />
+					<Register pName="PGA_CLAMP_LEVEL" pValue="0" />
+					<Register pName="PGA_GAIN_CONTROL" pValue="0" />
+				</REG51>
+				<REG52>
+					<Register pName="ACTIVE_TERMINATION" pValue="0" />
+					<Register pName="ACT_TER_ENA_CTRL" pValue="0" />
+					<Register pName="PRESET_ACTIVE_TERMINATIONS" pValue="3" />
+					<Register pName="ACTIVE_TERMINATION_ENABLE" pValue="1" />
+					<Register pName="LNA_INPUT_CLAMP_SETTING" pValue="0" />
+					<Register pName="LNA_INTEGRATOR_DISABLE" pValue="0" />
+					<Register pName="LNA_GAIN" pValue="2" />
+					<Register pName="LNA_INDIVIDUAL_CH_CNTL" pValue="0" />
+				</REG52>
+				<REG59>
+					<Register pName="HPF_LNA" pValue="2" />
+					<Register pName="DIG_TGC_ATT_GAIN" pValue="1" />
+					<Register pName="DIG_TGC_ATT" pValue="1" />
+					<Register pName="CW_SUM_AMP_PDN" pValue="0" />
+					<Register pName="PGA_TEST_MODE" pValue="0" />
+				</REG59>
+				<REG61>
+					<Register pName="V2I_CLAMP" pValue="0" />
+					<Register pName="LPF_5MHz" pValue="0" />
+					<Register pName="PGA_CLAMP_MINUS6DBFS" pValue="0" />
+				</REG61>
+			</SPI>
+		</AFE>
+	</VirtualChannel>
+</STLIB2>
