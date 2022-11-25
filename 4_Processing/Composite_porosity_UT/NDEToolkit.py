@@ -2,6 +2,48 @@ import numpy as np
 from scipy.signal import hilbert
 from skimage.transform import resize
 from scipy.fftpack import fft, fftfreq
+from PIL import Image      
+from os import listdir
+from pathlib import Path   
+import tifffile as tf
+
+def napari_read_tiff(pathlibpath,start=0, folder=False, nframes='all'):
+    '''
+    Read a multiframe tif image and loads it in a numpy array
+    '''
+    
+    if not folder:
+        with Image.open(str(pathlibpath), mode='r') as img:
+            stack = []
+            if nframes == 'all':
+
+                try:
+                    for i in range(start,img.n_frames):
+                        img.seek(i)
+                        stack.append(np.array(img))
+                except:
+                    print(i)
+                    pass
+        #     else:
+        #         for i in range(start,nframes):
+        #             img.seek(i)
+        #             stack.append(np.array(img))
+    if folder:
+        files = listdir(pathlibpath)
+        stack = []
+        for file in files:
+            filepath = pathlibpath / file
+            with Image.open(str(filepath),mode='r') as img:
+                stack.append(np.array(img))
+    return np.transpose(np.array(stack), (1, 2, 0))
+
+
+def write_tiff(vol,path_to_save):
+
+    vol = np.transpose(vol,(2,0,1))
+
+    tf.imwrite(path_to_save,vol)
+
 
 class FFTAnalyze:
     
@@ -176,10 +218,6 @@ class AspectRatio:
         new_shape = self.ratio(x,y,x1,y1)
 
         return resize(image, new_shape + (z1,))
-                
-                
-            
-
 
 
 class RfAnalyze: 
