@@ -223,16 +223,17 @@ class AspectRatio:
 class RfAnalyze: 
     
     def __init__(self,data=[], save = True, fs = 40,axis = 2):
-        
-        data = data.astype('int32')
-        media = np.mean(data)
-        data = data - media   
+
+        if len(data):
+    
+            data = data.astype('int32')
+            media = np.mean(data)
+            data = data - media   
         
         self.data = data
         self.fs = fs
         self.hilbert = []
         self.saved = False
-        self.analytic()
     
     def signal(self,data):
 
@@ -240,6 +241,8 @@ class RfAnalyze:
         media = np.mean(data)
         data = data - media 
         self.data = data
+        self.hilbert = []
+        self.saved = False
 
 
     
@@ -308,29 +311,28 @@ class RfAnalyze:
 class RfAligner:
     
     def __init__(self):
-        pass
         
-    def align(rfsignal,alignment_ref,min_ref):
+        self.rf = RfAnalyze()
         
-        np.apply_along_axis(self.align1D,2,rfsignal,alignment_ref,min_ref)
+    def align(self,rfsignal,alignment_ref,min_ref):
+        
+        return np.apply_along_axis(self.align1D,2,rfsignal,alignment_ref,min_ref)
 
-    def envelope_align(rfsignal,alignment_ref,min_ref):
+    def envelope_align(self,rfsignal,alignment_ref,min_ref):
         
-        np.apply_along_axis(self.envelope_align1D,2,rfsignal,alignment_ref,min_ref)
+        return np.apply_along_axis(self.envelope_align1D,2,rfsignal,alignment_ref,min_ref)
         
-    def align1D(rfsignal,alignment_ref,min_ref):
+    def align1D(self,rfsignal,alignment_ref,min_ref):
+
+        self.rf.signal(rfsignal)
         
-        analytical = hilbert(rfsignal)
+        analytical = self.rf.analytic()
         envelope = np.abs(analytical)
 
         array1d = rfsignal
         align = np.zeros(array1d.shape) #array de ceros con la shape de la señal
         maxi = np.argmax(array1d)
         pad = maxi - alignment_ref #distancia a la referencia
-
-        if maxi > 100:
-
-            print(maxi)
 
         if (pad > 0):
 
@@ -354,19 +356,17 @@ class RfAligner:
             return rfsignal
         
     
-    def envelope_align1D(rfsignal,alignment_ref,min_ref):
+    def envelope_align1D(self,rfsignal,alignment_ref,min_ref):
         
-        analytical = hilbert(rfsignal)
+        self.rf.signal(rfsignal)
+        
+        analytical = self.rf.analytic()
         envelope = np.abs(analytical)
 
         array1d = envelope
         align = np.zeros(array1d.shape) #array de ceros con la shape de la señal
         maxi = np.argmax(array1d)
         pad = maxi - alignment_ref #distancia a la referencia
-
-        if maxi > 100:
-
-            print(maxi)
 
         if (pad > 0):
 
