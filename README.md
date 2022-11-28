@@ -29,3 +29,4 @@ UltraCODE is an open project for sharing ultrasound code and datasets, including
 - Luis Elvira Segura [luis.elvira@csic.es](mailto:luis.elvira@csic.es)
 - Montserrat Parrilla [m.parrilla@csic.es](mailto:m.parrilla@csic.es)
 - Alberto Ibáñez [alberto.ibanez@csic.es](mailto:alberto.ibanez@csic.es)
+- Ricardo Gonzalez [ricardo@daselsistemas.com](mailto:ricardo@daselsistemas.com)
