@@ -232,10 +232,18 @@ class RfAnalyze:
         self.fs = fs
         self.hilbert = []
         self.saved = False
-        self.viewer = None
         self.analytic()
     
-    def analytic(self,save = True, visualzie = False):
+    def signal(self,data):
+
+        data = data.astype('int32')
+        media = np.mean(data)
+        data = data - media 
+        self.data = data
+
+
+    
+    def analytic(self,save = True):
         
         if save:
             self.saved = save
@@ -296,4 +304,87 @@ class RfAnalyze:
         result = np.apply_along_axis(func,2,data)
         
         return result
+    
+class RfAligner:
+    
+    def __init__(self):
+        pass
         
+    def align(rfsignal,alignment_ref,min_ref):
+        
+        np.apply_along_axis(self.align1D,2,rfsignal,alignment_ref,min_ref)
+
+    def envelope_align(rfsignal,alignment_ref,min_ref):
+        
+        np.apply_along_axis(self.envelope_align1D,2,rfsignal,alignment_ref,min_ref)
+        
+    def align1D(rfsignal,alignment_ref,min_ref):
+        
+        analytical = hilbert(rfsignal)
+        envelope = np.abs(analytical)
+
+        array1d = rfsignal
+        align = np.zeros(array1d.shape) #array de ceros con la shape de la señal
+        maxi = np.argmax(array1d)
+        pad = maxi - alignment_ref #distancia a la referencia
+
+        if maxi > 100:
+
+            print(maxi)
+
+        if (pad > 0):
+
+            if np.argmax(envelope)>min_ref: #Si el pico del envelope esta mas a la derecha que el low limit
+                end = len(array1d[pad:]) #Selecciona los valores de pad en adelante y cuenta la longitud
+                align[:end] = array1d[pad:] #Deja un hueco de 0s con el tamaño de pad y rellena el resto con la señal
+                return align
+            else:
+                return rfsignal
+
+        elif(pad<0):
+
+            start = len(array1d[:pad]) #Selecciona los valores hasta el pad y cuenta la longitud
+
+            align[np.abs(pad):] = array1d[:start] #Deja un hueco de 0s con el tamaño de pad al principio y rellena el resto con la señal
+
+            return align
+
+        else:
+
+            return rfsignal
+        
+    
+    def envelope_align1D(rfsignal,alignment_ref,min_ref):
+        
+        analytical = hilbert(rfsignal)
+        envelope = np.abs(analytical)
+
+        array1d = envelope
+        align = np.zeros(array1d.shape) #array de ceros con la shape de la señal
+        maxi = np.argmax(array1d)
+        pad = maxi - alignment_ref #distancia a la referencia
+
+        if maxi > 100:
+
+            print(maxi)
+
+        if (pad > 0):
+
+            if np.argmax(envelope)>min_ref: #Si el pico del envelope esta mas a la derecha que el low limit
+                end = len(array1d[pad:]) #Selecciona los valores de pad en adelante y cuenta la longitud
+                align[:end] = array1d[pad:] #Deja un hueco de 0s con el tamaño de pad y rellena el resto con la señal
+                return align
+            else:
+                return rfsignal
+
+        elif(pad<0):
+
+            start = len(array1d[:pad]) #Selecciona los valores hasta el pad y cuenta la longitud
+
+            align[np.abs(pad):] = array1d[:start] #Deja un hueco de 0s con el tamaño de pad al principio y rellena el resto con la señal
+
+            return align
+
+        else:
+
+            return rfsignal
