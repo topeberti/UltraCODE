@@ -280,7 +280,7 @@ class RfAnalyze:
         
         else:
             
-            data = self.analytic(False)
+            data = self.analytic(True)
         
         def func(x): 
             return (np.angle(x))
@@ -298,7 +298,7 @@ class RfAnalyze:
         
         else:
             
-            data = self.analytic(False)
+            data = self.analytic(True)
         
         def func(x):
             
