@@ -1,11 +1,22 @@
 import numpy as np
+
+#Scipy
 from scipy.signal import hilbert
-from skimage.transform import resize
 from scipy.fftpack import fft, fftfreq
-from PIL import Image      
+from scipy.signal import find_peaks
+
+#Image proccesing
+
+from skimage.transform import resize
+from PIL import Image
+import tifffile as tf
+
+# Path libraries
+
 from os import listdir
 from pathlib import Path   
-import tifffile as tf
+
+
 
 def napari_read_tiff(pathlibpath,start=0, folder=False, nframes='all'):
     '''
@@ -388,3 +399,61 @@ class RfAligner:
         else:
 
             return rfsignal
+
+
+class gateManager:
+
+    def __init__(self):
+
+        pass
+
+    def ifGate(self,signal,ff1,ff2,method = "max",lim = 0):
+
+        boundaries = [ff1,ff2]
+        
+        window = signal[boundaries[0]:boundaries[1]]
+
+        if method == "max":
+
+            result = window.max()
+
+            if result >= lim:
+
+                return result
+
+            return 0
+        
+        elif method == "first":
+
+            peaks, values = find_peaks(window,height=lim)
+
+            return values['peak_heights'][0]
+
+
+    def negativeGate(self,signal,ff1,ff2,method = "max",lim = 0):
+
+        boundaries = [ff1,ff2]
+        
+        window = signal[boundaries[0]:boundaries[1]]
+
+        def fun(x):
+
+            if (x > lim):
+
+                return 0
+            
+            return x
+
+        limiter = np.vectorize(fun)
+
+        window = limiter(window)
+
+        if method == "max":
+
+            return window.max()
+        
+        elif method == "first":
+
+            peaks, values = find_peaks(window, height=0)
+
+            return values['peak_heights'][0]
