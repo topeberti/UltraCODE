@@ -14,7 +14,10 @@ import tifffile as tf
 # Path libraries
 
 from os import listdir
-from pathlib import Path   
+from pathlib import Path 
+
+# csv reader
+import csv
 
 
 
@@ -54,7 +57,6 @@ def write_tiff(vol,path_to_save):
     vol = np.transpose(vol,(2,0,1))
 
     tf.imwrite(path_to_save,vol)
-
 
 class FFTAnalyze:
     
@@ -325,19 +327,27 @@ class RfAligner:
         
         self.rf = RfAnalyze()
         
-    def align(self,rfsignal,alignment_ref,min_ref):
+    def align(self,rfsignal,alignment_ref,min_ref, analitycal_input = False):
         
-        return np.apply_along_axis(self.align1D,2,rfsignal,alignment_ref,min_ref)
+        return np.apply_along_axis(self.align1D,2,rfsignal,alignment_ref,min_ref,analitycal_input)
 
     def envelope_align(self,rfsignal,alignment_ref,min_ref):
         
         return np.apply_along_axis(self.envelope_align1D,2,rfsignal,alignment_ref,min_ref)
         
-    def align1D(self,rfsignal,alignment_ref,min_ref):
+    def align1D(self,rfsignal,alignment_ref,min_ref, analitycal_input = False):
 
         self.rf.signal(rfsignal)
         
-        analytical = self.rf.analytic()
+        if analitycal_input:
+
+            analytical = rfsignal
+        
+        else:
+
+            analytical = self.rf.analytic()
+        
+        
         envelope = np.abs(analytical)
 
         array1d = rfsignal
