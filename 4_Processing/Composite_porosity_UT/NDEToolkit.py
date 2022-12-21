@@ -54,7 +54,9 @@ def napari_read_tiff(pathlibpath,start=0, folder=False, nframes='all'):
 
 def write_tiff(vol,path_to_save):
 
-    vol = np.transpose(vol,(2,0,1))
+    if len(vol.shape) == 3:
+
+        vol = np.transpose(vol,(2,0,1))
 
     tf.imwrite(path_to_save,vol)
 
