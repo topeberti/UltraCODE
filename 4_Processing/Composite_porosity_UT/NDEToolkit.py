@@ -469,3 +469,94 @@ class gateManager:
             peaks, values = find_peaks(window, height=0)
 
             return values['peak_heights'][0]
+
+class CscanManager:
+
+    def __init__(self):
+        
+        self.gate1 = []
+        self.gate2 = []
+        self.gate3 = []
+
+    def define_gate1(self,left,right,method = "max", lim = 0,type = 0):
+
+        self.gate1 = [left,right,method,lim,type]
+    
+    def define_gate2(self,left,right,method = "max", lim = 0,type = 0):
+
+        self.gate2 = [left,right,method,lim,type]
+    
+    def define_gate3(self,left,right,method = "max", lim = 0,type = 0):
+
+        self.gate3 = [left,right,method,lim,type]
+    
+
+    def compute(self,data):
+
+        gm = gateManager()
+
+        if not self.gate1[4] :
+            
+            peak1 = gm.ifGate(data,self.gate1[0],self.gate1[1],lim=self.gate1[3],method=self.gate1[2])
+
+        else:
+
+            peak1 = gm.negativeGate(data,self.gate1[0],self.gate1[1],lim=self.gate1[3],method=self.gate1[2])
+        
+        
+        if not peak1:
+
+            return 0
+
+
+        if not self.gate2[4] :
+
+            peak2 = gm.ifGate(data,self.gate2[0],self.gate2[1],lim=self.gate2[3],method=self.gate2[2])
+        
+        else:
+
+            peak2 = gm.negativeGate(data,self.gate2[0],self.gate2[1],lim=self.gate2[3],method=self.gate2[2])
+
+        
+        if not self.gate3[4] :
+            
+            peak3 = gm.ifGate(data,self.gate3[0],self.gate3[1],lim=self.gate3[3],method=self.gate3[2])
+
+        else:
+
+            peak3 = gm.negativeGate(data,self.gate3[0],self.gate3[1],lim=self.gate3[3],method=self.gate3[2])
+        
+
+        if not peak3:
+
+            return 0
+            
+        return ((10 *  np.log10(np.divide(peak2, peak1)+0.0001)) *(-2))
+    
+    def compute_3(self,data):
+
+        gm = ndt.gateManager()
+
+        if not self.gate1[4] :
+            
+            peak1 = gm.ifGate(data,self.gate1[0],self.gate1[1],lim=self.gate1[3],method=self.gate1[2])
+
+        else:
+
+            peak1 = gm.negativeGate(data,self.gate1[0],self.gate1[1],lim=self.gate1[3],method=self.gate1[2])
+        
+        if not peak1:
+
+            return 0
+
+        if not self.gate3[4] :
+            
+            peak3 = gm.ifGate(data,self.gate3[0],self.gate3[1],lim=self.gate3[3],method=self.gate3[2])
+
+        else:
+
+            peak3 = gm.negativeGate(data,self.gate3[0],self.gate3[1],lim=self.gate3[3],method=self.gate3[2])
+
+
+            
+        return ((10 *  np.log10(np.divide(peak3, 100)+0.0001)) *(-2))
