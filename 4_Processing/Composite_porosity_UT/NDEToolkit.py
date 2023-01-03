@@ -535,7 +535,7 @@ class CscanManager:
     
     def compute_3(self,data):
 
-        gm = ndt.gateManager()
+        gm = gateManager()
 
         if not self.gate1[4] :
             
