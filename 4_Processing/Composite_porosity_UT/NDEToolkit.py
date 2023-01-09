@@ -333,9 +333,9 @@ class RfAligner:
         
         return np.apply_along_axis(self.align1D,2,rfsignal,alignment_ref,min_ref,analitycal_input)
 
-    def envelope_align(self,rfsignal,alignment_ref,min_ref):
+    def envelope_align(self,rfsignal,alignment_ref,min_ref, analitycal_input = False):
         
-        return np.apply_along_axis(self.envelope_align1D,2,rfsignal,alignment_ref,min_ref)
+        return np.apply_along_axis(self.envelope_align1D,2,rfsignal,alignment_ref,min_ref, analitycal_input)
         
     def align1D(self,rfsignal,alignment_ref,min_ref, analitycal_input = False):
 
@@ -352,10 +352,22 @@ class RfAligner:
         
         envelope = np.abs(analytical)
 
+
         array1d = rfsignal
         align = np.zeros(array1d.shape) #array de ceros con la shape de la señal
         maxi = np.argmax(array1d)
         pad = maxi - alignment_ref #distancia a la referencia
+
+
+        # Si es fondo no se alinea
+
+        longitud = len(envelope)
+
+        final = int(longitud * 0.75)
+
+        if final < maxi:
+
+            return rfsignal
 
         if (pad > 0):
 
@@ -379,9 +391,17 @@ class RfAligner:
             return rfsignal
         
     
-    def envelope_align1D(self,rfsignal,alignment_ref,min_ref):
+    def envelope_align1D(self,rfsignal,alignment_ref,min_ref, analitycal_input = False):
         
         self.rf.signal(rfsignal)
+        
+        if analitycal_input:
+
+            analytical = rfsignal
+        
+        else:
+
+            analytical = self.rf.analytic()
         
         analytical = self.rf.analytic()
         envelope = np.abs(analytical)
@@ -390,6 +410,17 @@ class RfAligner:
         align = np.zeros(array1d.shape) #array de ceros con la shape de la señal
         maxi = np.argmax(array1d)
         pad = maxi - alignment_ref #distancia a la referencia
+
+
+        # Si es fondo no se alinea
+
+        final = envelope()
+
+        print(maxi)
+
+        if moda == minimo:
+
+            return rfsignal
 
         if (pad > 0):
 
