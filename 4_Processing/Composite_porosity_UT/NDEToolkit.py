@@ -501,6 +501,7 @@ class gateManager:
 
             return values['peak_heights'][0]
 
+
 class CscanManager:
 
     def __init__(self):
@@ -556,11 +557,6 @@ class CscanManager:
         else:
 
             peak3 = gm.negativeGate(data,self.gate3[0],self.gate3[1],lim=self.gate3[3],method=self.gate3[2])
-        
-
-        if not peak3:
-
-            return 0
             
         return ((10 *  np.log10(np.divide(peak2, peak1)+0.0001)) *(-2))
     
@@ -587,7 +583,5 @@ class CscanManager:
         else:
 
             peak3 = gm.negativeGate(data,self.gate3[0],self.gate3[1],lim=self.gate3[3],method=self.gate3[2])
-
-
             
         return ((10 *  np.log10(np.divide(peak3, 100)+0.0001)) *(-2))
