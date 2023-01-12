@@ -548,15 +548,6 @@ class CscanManager:
         else:
 
             peak2 = gm.negativeGate(data,self.gate2[0],self.gate2[1],lim=self.gate2[3],method=self.gate2[2])
-
-        
-        if not self.gate3[4] :
-            
-            peak3 = gm.ifGate(data,self.gate3[0],self.gate3[1],lim=self.gate3[3],method=self.gate3[2])
-
-        else:
-
-            peak3 = gm.negativeGate(data,self.gate3[0],self.gate3[1],lim=self.gate3[3],method=self.gate3[2])
             
         return ((10 *  np.log10(np.divide(peak2, peak1)+0.0001)) *(-2))
     
