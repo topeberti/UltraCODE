@@ -414,11 +414,11 @@ class RfAligner:
 
         # Si es fondo no se alinea
 
-        final = envelope()
+        longitud = len(envelope)
 
-        print(maxi)
+        final = int(longitud * 0.75)
 
-        if moda == minimo:
+        if final < maxi:
 
             return rfsignal
 
